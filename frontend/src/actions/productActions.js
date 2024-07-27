@@ -5,7 +5,7 @@ import { createReviewFail, createReviewRequest, createReviewSuccess, deleteProdu
 export const getProducts = (keyword, price, category, currentPage,rating) => async (dispatch)=>{
     try {
         dispatch(productsRequest())
-        let link = `/product?page=${currentPage}`;
+        let link = `https://mernify-khkk.onrender.com/product?page=${currentPage}`;
         
         if(keyword) {
             link += `&keyword=${keyword}`
