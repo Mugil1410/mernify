@@ -37,7 +37,7 @@
     "dev": "set REACT_APP_NODE_ENV=development&&set REACT_APP_BACKEND_URL=http://127.0.0.1:8000&&react-scripts start",
     "prod": "set NODE_ENV=production&&set REACT_APP_BACKEND_URL=https://mernify-backend.onrender.com&&react-scripts start"
   },
-  "proxy": "http://localhost:8000",
+  "proxy": "https://mernify-khkk.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",
