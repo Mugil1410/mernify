@@ -18,7 +18,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 
-app.use(express.static(path.join(__dirname, 'build')))
+
 
 // Load environment variables from config.env
 dotenv.config({ path: path.join(__dirname, "config/config.env") });
@@ -29,7 +29,12 @@ app.use(express.json());
 // Middleware: Parse cookies
 app.use(cookieParser());
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+
 app.use('/uploads', express.static(path.join(__dirname,'uploads') ) )
+
+
 
 // Routes: Use the users (authentication) route
 app.use('/', users);

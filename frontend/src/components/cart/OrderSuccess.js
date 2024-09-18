@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function OrderSuccess() {
     return (
         <div className="row justify-content-center">
@@ -6,7 +8,7 @@ export default function OrderSuccess() {
 
                 <h2>Your Order has been placed successfully.</h2>
 
-                <a href="/orders">Go to Orders</a>
+                <Link  to="/orders" className="btn btn-primary my-3">View Orders</Link>
             </div>
 
         </div>
