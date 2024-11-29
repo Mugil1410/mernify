@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "set REACT_APP_NODE_ENV=development&&set REACT_APP_BACKEND_URL=http://127.0.0.1:8000&&react-scripts start",
-    "prod": "set NODE_ENV=production&&set REACT_APP_BACKEND_URL=https://mernify-backend.onrender.com&&react-scripts start"
+    "prod": "set NODE_ENV=production&&set REACT_APP_BACKEND_URL=https://mernify-api.onrender.com&&react-scripts start"
   },
   
   "eslintConfig": {
