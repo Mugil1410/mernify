@@ -1,17 +1,17 @@
 {
-  "name": "try1",
+  "name": "mernify",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start_server": "nodemon ./backend/server.js",
     "dev": "set NODE_ENV=development&&nodemon backend/server.js",
-    "prod": "set NODE_ENV=production&&nodemon backend/server.js",
+    "prod": "set NODE_ENV=production&&node backend/server.js",
     "seeder": "node ./backend/utlis/seeder.js",
     "start_client": "cd./frontend/ && npm start",
     "start_all": "concurrently \"npm run dev\" \"npm run start_client\""
   },
-  "author": "",
+  "author": "Mugilome <mugilaananthan@gmail.com>",
   "license": "ISC",
   "description": "",
   "dependencies": {
@@ -21,6 +21,7 @@
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
     "handlebars": "^4.7.8",

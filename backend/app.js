@@ -18,6 +18,13 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 
+// Load EJS view engine 
+app.set('view engine', 'ejs'); // Set views directory 
+app.set('views', path.join(__dirname, 'views')); // Set public directory for static files 
+app.use(express.static(path.join(__dirname, 'public'))); // Define route for root URL (GET method) 
+// Define route for root URL (GET method) 
+app.get('/', (req, res) => { res.render('index'); })
+
 
 
 // Load environment variables from config.env

@@ -9,19 +9,15 @@ const sendToken = (user, statusCode, res) => {
         // Set a cookie with the token (expires after JWT expiration time)
         // Send the token and user data in the response
         try {
-            res.status(statusCode)
-    .cookie('token', token, {
-        expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000),
-        httpOnly: true, // Ensures the token is only accessible via HTTP requests
-    })
-    .send({ success: true, user, token }); // Use .send() instead of .json()
-
-console.log("Token set successfully.");
-
-            
-        } catch (error) {
-            console.log("tokken setter",error);
-        }
+            res.status(statusCode).cookie('token', token, {
+                            expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000),
+                            httpOnly: true, // Ensures the token is only accessible via HTTP requests
+                        }).send({ 
+                            success: true, user, token 
+                        }); // Use .send() instead of .json()
+            } catch (error) {
+                console.log("tokken setter",error);
+            }
         
     } catch (error) {
         // Handle any errors that occur during token generation or cookie setting
