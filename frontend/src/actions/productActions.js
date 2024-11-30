@@ -5,7 +5,7 @@ import { createReviewFail, createReviewRequest, createReviewSuccess, deleteProdu
 export const getProducts = (keyword, price, category, currentPage,rating) => async (dispatch)=>{
     try {
         dispatch(productsRequest())
-        let link = `${process.env.REACT_APP_BACKEND_URL}/product?page=${currentPage}`;
+        let link = `https://mernify-api.onrender.com/product?page=${currentPage}`;
         
         if(keyword) {
             link += `&keyword=${keyword}`
