@@ -30,7 +30,7 @@ import { deleteUserFail, deleteUserRequest, deleteUserSuccess, updateUserFail, u
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch(loginRequest());
-    const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PROD_URL}/login`, { email, password });
+    const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, { email, password });
     dispatch(loginSuccess(data));
     localStorage.setItem("token", data.token);
   } catch (error) {
@@ -52,7 +52,7 @@ export const register = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_PROD_URL}/register`, userData, config);
+    const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/register`, userData, config);
     dispatch(registerSuccess(data));
   } catch (error) {
     dispatch(registerFail(error.response.data.message));
@@ -63,7 +63,7 @@ export const loadUser =  async (dispatch) => {
 
   try {
       dispatch(loadUserRequest())
-      const { data }  = await axios.get(`${process.env.REACT_APP_BACKEND_PROD_URL}/userprofile`);
+      const { data }  = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/userprofile`);
       dispatch(loadUserSuccess(data))
   } catch (error) {
       console.log("console log error:",error);
@@ -80,7 +80,7 @@ export const loadUser =  async (dispatch) => {
 export const logout =  async (dispatch) => {
 
   try {
-      await axios.get(`${process.env.REACT_APP_BACKEND_PROD_URL}/logout`);
+      await axios.get(`${process.env.REACT_APP_BACKEND_URL}/logout`);
       dispatch(logoutSuccess())
   } catch (error) {
       dispatch(logoutFail)
@@ -97,7 +97,7 @@ export const updateProfile = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.put(`${process.env.REACT_APP_BACKEND_PROD_URL}/update/profile`, userData, config);
+    const { data } = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/update/profile`, userData, config);
     dispatch(updateProfileSuccess(data));
     
   } catch (error) {
