@@ -32,7 +32,7 @@ export const getProducts = (keyword, price, category, currentPage,rating) => asy
 export const getProduct = id => async (dispatch)=>{
     try {
         dispatch(productRequest())
-        const {data} = await axios.get(`${process.env.REACT_APP_BACKEND_PROD_URL}/product/${id}`)
+        const {data} = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/product/${id}`)
         dispatch(productSuccess(data))
     } catch (error) {
         dispatch(productFail(error.response.data.message))
@@ -48,7 +48,7 @@ export const createReview = reviewData => async (dispatch) => {
                 'Content-type': 'application/json'
             }
         }
-        const { data }  =  await axios.put(`${process.env.REACT_APP_BACKEND_PROD_URL}/review`,reviewData, config);
+        const { data }  =  await axios.put(`${process.env.REACT_APP_BACKEND_URL}/review`,reviewData, config);
         dispatch(createReviewSuccess(data))
     } catch (error) {
         //handle error
@@ -61,7 +61,7 @@ export const getAdminProducts  =  async (dispatch) => {
 
     try {  
         dispatch(adminProductsRequest()) 
-        const { data }  =  await axios.get(`${process.env.REACT_APP_BACKEND_PROD_URL}/admin/products`);
+        const { data }  =  await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/products`);
         dispatch(adminProductsSuccess(data))
     } catch (error) {
         //handle error
@@ -74,7 +74,7 @@ export const createNewProduct  =  productData => async (dispatch) => {
 
     try {  
         dispatch(newProductRequest()) 
-        const { data }  =  await axios.post(`${process.env.REACT_APP_BACKEND_PROD_URL}/admin/product/new`, productData);
+        const { data }  =  await axios.post(`${process.env.REACT_APP_BACKEND_URL}/admin/product/new`, productData);
         dispatch(newProductSuccess(data))
     } catch (error) {
         //handle error
@@ -87,7 +87,7 @@ export const deleteProduct  =  id => async (dispatch) => {
 
     try {  
         dispatch(deleteProductRequest()) 
-        await axios.delete(`${process.env.REACT_APP_BACKEND_PROD_URL}/admin/product/${id}`);
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/product/${id}`);
         dispatch(deleteProductSuccess())
     } catch (error) {
         //handle error
@@ -100,7 +100,7 @@ export const updateProduct  =  (id, productData) => async (dispatch) => {
 
     try {  
         dispatch(updateProductRequest()) 
-        const { data }  =  await axios.put(`${process.env.REACT_APP_BACKEND_PROD_URL}/admin/product/${id}`, productData);
+        const { data }  =  await axios.put(`${process.env.REACT_APP_BACKEND_URL}/admin/product/${id}`, productData);
         dispatch(updateProductSuccess(data))
     } catch (error) {
         //handle error
@@ -114,7 +114,7 @@ export const getReviews =  id => async (dispatch) => {
 
     try {  
         dispatch(reviewsRequest()) 
-        const { data }  =  await axios.get(`${process.env.REACT_APP_BACKEND_PROD_URL}/admin/reviews`,{params: {id}});
+        const { data }  =  await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/reviews`,{params: {id}});
         dispatch(reviewsSuccess(data))
     } catch (error) {
         //handle error
