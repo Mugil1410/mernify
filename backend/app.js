@@ -18,22 +18,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 
-// Load EJS view engine 
-app.set('view engine', 'ejs'); // Set views directory 
-app.set('views', path.join(__dirname, 'views')); // Set public directory for static files 
-app.use(express.static(path.join(__dirname, 'public'))); // Define route for root URL (GET method) 
-// Define route for root URL (GET method) 
-app.get('/', (req, res) => { res.render('index'); })
-
-
-
 // Load environment variables from config.env
 dotenv.config({ path: path.join(__dirname, "config/config.env") });
-// Catch-all handler: Send all other requests to the React app
-app.get('/server', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 
 // Middleware: Parse incoming JSON data
 app.use(express.json());
