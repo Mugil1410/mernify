@@ -30,7 +30,7 @@ app.get('/', (req, res) => { res.render('index'); })
 // Load environment variables from config.env
 dotenv.config({ path: path.join(__dirname, "config/config.env") });
 // Catch-all handler: Send all other requests to the React app
-app.get('*', (req, res) => {
+app.get('/server', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
