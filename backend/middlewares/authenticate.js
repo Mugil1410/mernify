@@ -7,18 +7,20 @@ const catchAsyncError = require("./catchAsyncError");
 exports.authenticatedUser = catchAsyncError(async (req, res, next) => {
     const { token } = req.cookies;
     console.log(token);
-    console.log(process.env.JWT_SECRET);
     
     try {
         if (!token) {
             next(new ErrorHandler("Login first to handle this resource", 401));
+            return
+        }else{
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = await User.findById(decoded.id);
+            console.log('passed middlware');
+            
+            next();
         }
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(decoded);
-        req.user = await User.findById(decoded.id);
-        next();
+       
     } catch (error) {
-        console.log("error from middleware",error);
         next(new ErrorHandler("Middleware->Invalid token", 401));
     }
 });

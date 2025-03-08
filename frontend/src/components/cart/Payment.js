@@ -67,7 +67,7 @@ export default function Payment() {
     payButton.disabled = true;
 
     try {
-      const { data } = await axios.post("/payment/process", paymentData);
+      const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/payment/process`, paymentData);
       const clientSecret = data.clientSecret;
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {

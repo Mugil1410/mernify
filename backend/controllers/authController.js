@@ -10,7 +10,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
   const { name, email, password, role } = req.body;
   let avatar;
   if (req.file) {
-    avatar = `${process.env.BACKEND_URL}/uploads/user/${req.file.originalname}`;
+    avatar = `/uploads/user/${req.file.originalname}`;
   }
   const user = await User.create({ name, email, password, avatar, role });
   const token = user.getJWTtoken();

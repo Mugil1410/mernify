@@ -11,7 +11,7 @@ import ProductSearch from "./components/product/ProductSearch";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import store from './store'
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { loadUser } from "./actions/userActions";
 import UserProfile from "./components/user/UserProfile";
 import ProtectedRoute from "./components/route/ProtectedRoute";
@@ -25,11 +25,9 @@ import ConfirmOrder from "./components/cart/ConfirmOrder";
 import Payment from "./components/cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from '@stripe/stripe-js';
-import axios from 'axios'
 import OrderSuccess from "./components/cart/OrderSuccess";
 import UserOrders from "./components/order/UserOrders";
 import OrderDetail from "./components/order/OrderDetail";
-import { useSelector } from "react-redux";
 import Dashboard from "./components/admin/Dashboard";
 import ProductList from "./components/admin/ProductList";
 import NewProduct from "./components/admin/NewProduct";
@@ -43,12 +41,11 @@ import ReviewList from "./components/admin/ReviewList";
 
 
 function App() {
-  const [stripeApiKey, setStripeApiKey] = useState("")
+
+  const stripeApiKey = 'pk_test_51PbtbyRu57BrIIqqAPLexiM7bHYV9mEF6aFQAZ7xXRsehlux8ZWkC4jTRmtMHmWrzTTwLHAlyaHaaS5Oy8wzkq1w00sNxdfcbq'
   
   useEffect(()=>{
     store.dispatch(loadUser)
-    setStripeApiKey('pk_test_51PbtbyRu57BrIIqqAPLexiM7bHYV9mEF6aFQAZ7xXRsehlux8ZWkC4jTRmtMHmWrzTTwLHAlyaHaaS5Oy8wzkq1w00sNxdfcbq');
-
   },[])
   
   return (

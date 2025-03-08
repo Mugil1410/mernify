@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dropdown, Image } from "react-bootstrap";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import { logout } from "../../actions/userActions";
-import { useEffect } from "react";
+
 
 
 const Header = () => {
@@ -33,13 +33,13 @@ const Header = () => {
       </div>
 
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-      {isAuthenticated ? 
+      {isAuthenticated && user ? 
         (
           <Dropdown className='d-inline' >
             <Dropdown.Toggle variant="default text-white pr-5" id="dropdown-basic">
               <figure className="avatar avatar-nav">
-                <Image width="50px" src={user.avatar ? user.avatar: './images/profile.png'} roundedCircle />
-              </figure>
+               <Image width="50px" src={user.avatar ? `${process.env.REACT_APP_BACKEND_URL}${user.avatar}` : './images/profile.png'} roundedCircle />
+              </figure> 
               <span>{user.name}</span>
             </Dropdown.Toggle>
             <DropdownMenu>
@@ -61,5 +61,8 @@ const Header = () => {
     </nav>
   );
 };
+
+
+
 
 export default Header;

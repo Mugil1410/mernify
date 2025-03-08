@@ -37,84 +37,84 @@ exports.getPrdoducts = catchAsyncError(async (req, res, next) => {
 
 //fetch single product by id - /product/:id
 exports.getSinglePrdoduct = catchAsyncError(async (req, res, next) => {
-  const product = await Product.findById(req.params.id).populate('reviews.user','name email');
+  const product = await Product.findById(req.params.id).populate(
+    "reviews.user",
+    "name email"
+  );
   if (!product) {
     return next(new ErrorHandler("Product not found", 400));
   }
   res.status(201).json({
     success: true,
-    product
-  })
+    product,
+  });
 });
 
 //create new product - /product
 exports.newProduct = catchAsyncError(async (req, res, next) => {
   try {
-      let images = [];
-      if (req.files.length > 0) {
-          req.files.forEach(file => {
-              let url = `/uploads/product/${file.originalname}`;
-              images.push({ image: url });
-          });
-      }
-      req.body.images = images;
-      req.body.user = req.user.id;
-      const product = await Product.create(req.body);
-      res.status(201).json({
-          message: "Product created successfully",
-          product,
+    let images = [];
+    if (req.files.length > 0) {
+      req.files.forEach((file) => {
+        let url = `/uploads/product/${file.originalname}`;
+        images.push({ image: url });
       });
+    }
+    req.body.images = images;
+    req.body.user = req.user.id;
+    const product = await Product.create(req.body);
+    res.status(201).json({
+      message: "Product created successfully",
+      product,
+    });
   } catch (error) {
-    console.log("creating error ",error);
-      res.status(500).json({ message: "Error creating product" }); 
+    console.log("creating error ", error);
+    res.status(500).json({ message: "Error creating product" });
   }
 });
-
 
 //update product - /product/:id
 exports.updateProduct = catchAsyncError(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 
   //uploading images
-  let images = []
+  let images = [];
 
   //if images not cleared we keep existing images
-  if(req.body.imagesCleared === 'false' ) {
-      images = product.images;
+  if (req.body.imagesCleared === "false") {
+    images = product.images;
   }
   let BASE_URL = process.env.BACKEND_URL;
-  if(process.env.NODE_ENV === "production"){
-      BASE_URL = `${req.protocol}://${req.get('host')}`
+  if (process.env.NODE_ENV === "production") {
+    BASE_URL = `${req.protocol}://${req.get("host")}`;
   }
 
-  if(req.files.length > 0) {
-      req.files.forEach( file => {
-          let url = `${BASE_URL}/uploads/product/${file.originalname}`;
-          images.push({ image: url })
-      })
+  if (req.files.length > 0) {
+    req.files.forEach((file) => {
+      let url = `${BASE_URL}/uploads/product/${file.originalname}`;
+      images.push({ image: url });
+    });
   }
-
 
   req.body.images = images;
-  
-  if(!product) {
-      return res.status(404).json({
-          success: false,
-          message: "Product not found"
-      });
+
+  if (!product) {
+    return res.status(404).json({
+      success: false,
+      message: "Product not found",
+    });
   }
 
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
-  })
+    new: true,
+    runValidators: true,
+  });
 
   res.status(200).json({
-      success: true,
-      product
-  })
-
-})
+    success: true,
+    product,
+  });
+});
 
 //delete product - /product/:id
 exports.deleteProducts = (req, res, next) => {
@@ -215,10 +215,10 @@ exports.deleteReview = catchAsyncError(async (req, res, next) => {
 });
 
 // get admin products  - admin/products
-exports.getAdminProducts = catchAsyncError(async (req, res, next) =>{
+exports.getAdminProducts = catchAsyncError(async (req, res, next) => {
   const products = await Product.find();
   res.status(200).send({
-      success: true,
-      products
-  })
+    success: true,
+    products,
+  });
 });

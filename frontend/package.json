@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.7.2",
+    "axios": "^1.7.8",
     "countries-list": "^3.1.0",
     "dotenv": "^16.4.5",
     "env-cmd": "^10.1.0",
@@ -37,7 +37,6 @@
     "dev": "set REACT_APP_NODE_ENV=development&&set REACT_APP_BACKEND_URL=http://127.0.0.1:8000&&react-scripts start",
     "prod": "set NODE_ENV=production&&set REACT_APP_BACKEND_URL=https://mernify-api.onrender.com&&react-scripts start"
   },
-  
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -57,6 +56,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react-router-dom": "^5.3.3"
   }
 }

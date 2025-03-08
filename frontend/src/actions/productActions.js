@@ -5,7 +5,7 @@ import { createReviewFail, createReviewRequest, createReviewSuccess, deleteProdu
 export const getProducts = (keyword, price, category, currentPage,rating) => async (dispatch)=>{
     try {
         dispatch(productsRequest())
-        let link = `https://mernify-api.onrender.com/product?page=${currentPage}`;
+        let link = `${process.env.REACT_APP_BACKEND_URL}/product?page=${currentPage}`;
         
         if(keyword) {
             link += `&keyword=${keyword}`
@@ -23,6 +23,8 @@ export const getProducts = (keyword, price, category, currentPage,rating) => asy
         const {data} = await axios.get(link)
         dispatch(productsSuccess(data))
     } catch (error) {
+        console.log("i am log"+error);
+        
         dispatch(productsFail(error.response.data.message))
     }
 }
@@ -127,7 +129,7 @@ export const deleteReview =  (productId, id) => async (dispatch) => {
 
     try {  
         dispatch(deleteReviewRequest()) 
-        await axios.delete(`${process.env.REACT_APP_BACKEND_PROD_URL}/admin/review`,{params: {productId, id}});
+        await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/review`,{params: {productId, id}});
         dispatch(deleteReviewSuccess())
     } catch (error) {
         //handle error
